@@ -4,7 +4,7 @@ import { CustomPagination } from "@/components/custom/CustomPagination";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { currencyFormater } from "@/lib/currency-formatter";
-import { products } from "@/mocks/products.mocks";
+
 import { useProducts } from "@/shop/hooks/useProducts";
 import { PencilIcon, PlusIcon } from "lucide-react";
 import { Link } from "react-router";

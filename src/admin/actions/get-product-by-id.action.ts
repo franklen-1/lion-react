@@ -1,6 +1,5 @@
 import { tesloApi } from "@/api/tesloApi";
 import type { Product } from "@/interfaces/product.interface";
-import { data } from "react-router";
 
 
 export const getProductByIdAction = async(id:string):Promise<Product> => {
