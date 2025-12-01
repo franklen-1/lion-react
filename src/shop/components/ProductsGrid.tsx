@@ -4,7 +4,7 @@ import { Filter, Grid, List } from 'lucide-react'
 import { ProductCard } from './ProductCard';
 import FilterSidebar from './FileterSidebar';
 import { useSearchParams } from 'react-router';
-import { use, useState } from 'react';
+import { useState } from 'react';
 import type { Product } from '@/interfaces/product.interface';
 
 
