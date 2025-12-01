@@ -6,6 +6,7 @@ import { useRef, useState, type KeyboardEvent } from "react";
 import { Link, useParams, useSearchParams } from "react-router";
 import { cn } from "@/lib/utils";
 import { CustomLogo } from "@/components/custom/CustomLogo";
+import { useAuthStore } from "@/auth/store/auth.store";
 
 
 export const CustomHeader = () => {
@@ -13,6 +14,8 @@ export const CustomHeader = () => {
 
 
   const [searchParams, setSearchParams]= useSearchParams();
+  const { authStatus,isAdmin, logout} = useAuthStore();
+
   const {gender} = useParams();
 
 
@@ -80,11 +83,8 @@ export const CustomHeader = () => {
                 />
               </div>
             </div>
-            
-            <Button variant="ghost" size="icon" className="md:hidden">
-              <Search className="h-5 w-5" />
-            </Button>
-            
+
+                       
             <Button variant="ghost" size="icon" className="relative">
               <ShoppingBag className="h-5 w-5" />
               {cartCount > 0 && <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">
@@ -92,23 +92,44 @@ export const CustomHeader = () => {
                 </span>}
             </Button>
 
-            <Link to="/auth/login">
-              <Button
-                variant='default'
-                size='sm'
-                className="ml-2">
-                Login  
-              </Button>
-            </Link>
+            <Button variant="ghost" size="icon" className="md:hidden">
+              <Search className="h-5 w-5" />
+            </Button>
 
+                {authStatus == 'not-authenticated' ? (
+                    <Link to="/auth/login">
+                      <Button
+                        variant='default'
+                        size='sm'
+                        className="ml-2">
+                        Login  
+                      </Button>
+                    </Link>
+                  ):(
+                      <Button
+                        onClick={logout}
+                        variant='outline'
+                        size='sm'
+                        className="ml-2"
+                      >
+                        Cerrar sesion  
+                      </Button>
+                  )}
+
+            {isAdmin () && (
             <Link to="/admin">
               <Button
                 variant='destructive'
                 size='sm'
-                className="ml-2">
-                Login  
+                className="ml-2"
+                type="button"
+              >
+                Admin  
               </Button>
             </Link>
+              
+            )}
+
           </div>
         </div>
       </div>

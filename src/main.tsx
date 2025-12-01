@@ -1,10 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { PasteleriaStoreApp } from './PasteleriaStoreApp'
+import { LionShop } from './LionShop'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <PasteleriaStoreApp />
+    <LionShop />
   </StrictMode>,
 )

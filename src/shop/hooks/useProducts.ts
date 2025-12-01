@@ -8,7 +8,9 @@ export const useProducts = () => {
   const {gender} = useParams();  
     // logica
   const [searchParams] = useSearchParams();
-
+    //busqueda
+  const query = searchParams.get('query') || undefined;
+  
 
   const limit = searchParams.get('limit') || 9;
   const page = searchParams.get('page') || 1;
@@ -49,7 +51,7 @@ export const useProducts = () => {
 
 
   return useQuery({
-    queryKey: ['products' , { offset, limit, gender, sizes, minPrice, maxPrice}],
+    queryKey: ['products' , { offset, limit, gender, sizes, minPrice, maxPrice, query}],
     queryFn: () => 
     getProductsAction({
       limit:isNaN(+ limit) ? 9: limit,
@@ -58,6 +60,7 @@ export const useProducts = () => {
       sizes,
       minPrice,
       maxPrice,
+      query,
     }),
     // staleTime:1000 * 60 * 5,
   });
